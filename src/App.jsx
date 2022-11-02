@@ -1,12 +1,22 @@
-import './App.css'
+import "./App.scss";
+import {
+  Navbar,
+  RecipeDetails,
+  RecipeActions,
+  RecipeList,
+  RecipeView,
+} from "./components";
 
 function App() {
-
   return (
-    <div className="App">
-      App
-    </div>
-  )
+    <main className="app">
+      <Navbar />
+      <RecipeList />
+      <RecipeView />
+      <RecipeActions />
+      <RecipeDetails />
+    </main>
+  );
 }
 
-export default App
+export default App;

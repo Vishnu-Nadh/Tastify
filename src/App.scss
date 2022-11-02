@@ -1,0 +1,24 @@
+@use "./sass/mixins" as mxn;
+
+.app {
+  max-width: 120rem;
+  width: 90%;
+  min-height: 100vh;
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1fr 2.25fr;
+  grid-template-rows: 7rem 35rem 8rem minmax(50rem, auto);
+  grid-template-areas:
+    "navbar navbar"
+    "recipelist recipe-view"
+    "recipelist recipe-actions"
+    "recipelist recipe-details";
+
+  @include mxn.respond(md) {
+    width: 100%;
+    height: 100%;
+  }
+}

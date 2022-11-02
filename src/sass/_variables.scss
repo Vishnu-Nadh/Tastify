@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap");
+
+// VARIABLES
+$color-primary: #f05e80;
+$color-primary-light: #f58ea6;
+$color-primary-dark: #d85573;
+$color-secondary: #d36742;
+$color-text: #333;
+
+$color-bg: antiquewhite;
+
+$color-bg-gradient: linear-gradient(90deg, #f598a8, #f6edb2);
+$color-text-gradient: linear-gradient(90deg, #f05e80, #d36742);
+$font-default: "Manrope", sans-serif;
+
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+$flex-gap: 2rem;

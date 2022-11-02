@@ -1,0 +1,66 @@
+@use "../sass/variables" as var;
+@use "../sass/mixins" as mxn;
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.nav {
+  background-color: var.$color-bg;
+  grid-area: navbar;
+
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 1rem 3rem;
+
+  &__bookmark {
+    margin-left: auto;
+  }
+
+  &__logo {
+    font-size: 2.4rem;
+    font-family: "Pacifico", cursive;
+    color: var.$color-primary;
+    background-image: var.$color-text-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &__bookmark {
+    @include mxn.flexRowCenter(1rem);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var.$color-primary;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.839);
+    transition: all 0.3s eas-in;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.657);
+    }
+  }
+
+  &__search {
+    font-size: 1.4rem;
+    padding: .5rem 1.6rem;
+    border-radius: 50px;
+    border: 2px solid var.$color-primary-light;
+    color: var.$color-primary-dark;
+    min-width: 30rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    &::placeholder {
+        color: #bbb;
+        font-weight: 500;
+    }
+  }
+
+
+  &__bookmark_icon {
+    color: var.$color-primary;
+    font-size: 2rem;
+  }
+}

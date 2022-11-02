@@ -1,0 +1,66 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba($color: $color-primary, $alpha: 0.2);
+}
+
+button {
+  border: none;
+}
+
+html {
+  &:focus-within {
+    scroll-behavior: smooth;
+  }
+
+  @include respond(xl) {
+    font-size: 75%; //12px
+  }
+
+  @include respond(md) {
+    font-size: 62.5%;
+  }
+
+  @include respond(sm) {
+    font-size: 56.25%; // 9px
+  }
+
+  @include respond(xs) {
+    font-size: 50%; // 8px
+  }
+}
+
+html::-webkit-scrollbar {
+  width: 1vh;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: $color-primary-light;
+  border-radius: 50px;
+}
+
+body {
+  min-height: 100vh;
+  background-image: $color-bg-gradient;
+  font-family: $font-default;
+  position: relative;
+  color: $color-text;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  padding: 5rem 0;
+  @include flexColCenter();
+
+  @include respond(md) {
+    padding: 0;
+  }
+}
