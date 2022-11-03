@@ -1,0 +1,54 @@
+@use "../sass/variables" as var;
+@use "../sass/mixins" as mxn;
+
+.recipe {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: var.$color-primary-bg;
+  border-bottom: 3px solid #eee;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: #fef5f7;
+  }
+
+  &__image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+
+    & h4 {
+      width: 17rem;
+      font-weight: 700;
+      color: var.$color-primary-dark;
+      font-size: 1.4rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & p {
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+}

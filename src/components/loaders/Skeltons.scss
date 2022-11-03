@@ -1,0 +1,50 @@
+.recipe {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 3px solid #eee;
+  background-color: yellow;
+
+  &__image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+
+    & h4 {
+      width: 17rem;
+      height: 1rem;
+      border-radius: 2px;
+    }
+
+    & p {
+      width: 20rem;
+      height: 0.8rem;
+      border-radius: 2px;
+      background-color: #eee;
+    }
+  }
+}
+
+.skelton {
+  opacity: 0.7;
+  animation: skelton-loading 1s linear infinite alternate;
+}
+
+@keyframes skleton-loading {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
