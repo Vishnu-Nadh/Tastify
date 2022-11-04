@@ -12,6 +12,7 @@ import {
 function App() {
   const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [hasRecipesFetchError, setHasRecipesFetchError] = useState(false);
+  const [notFetched, setNoFetched] = useState(true);
   const [recipes, setRecipes] = useState([]);
 
   const fetchRecipes = async (query) => {
@@ -33,10 +34,12 @@ function App() {
       });
       setRecipes(recipes);
       setIsRecipesLoading(false);
+      setNoFetched(false)
     } catch (error) {
       // console.log(error.message);
       setHasRecipesFetchError(true);
       setIsRecipesLoading(false);
+      setNoFetched(false)
     }
   };
 
@@ -47,6 +50,7 @@ function App() {
         isLoading={isRecipesLoading}
         hasError={hasRecipesFetchError}
         recipes={recipes}
+        notFetched={notFetched}
       />
       <RecipeView />
       <RecipeActions />

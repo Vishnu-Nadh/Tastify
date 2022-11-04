@@ -1,0 +1,21 @@
+@use "../sass/mixins" as mxn;
+@use "../sass/variables" as var;
+
+.error {
+  padding: 4rem 2rem;
+  @include mxn.flexColCenter();
+  width: 100%;
+
+  & p {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    color: var.$color-primary;
+  }
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    color: var.$color-primary;
+  }
+}

@@ -1,0 +1,74 @@
+@use "../sass/mixins" as mxn;
+@use "../sass/variables" as var;
+
+.pagination {
+  position: relative;
+  @include mxn.flexRowCenter();
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 1.4rem 1rem;
+  background-color: rgba($color: var.$color-secondary, $alpha: 0.1);
+
+  &__current {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    text-align: center;
+    @include mxn.flexRowCenter();
+    background-color: rgba($color: var.$color-primary, $alpha: 0.4);
+  }
+
+  &__next {
+    position: absolute;
+    right: 2rem;
+    @include mxn.flexRowCenter(1rem);
+    // background-color: rgba($color: var.$color-primary, $alpha: 0.4);
+    background-image: linear-gradient(
+      to left,
+      rgba($color: var.$color-primary, $alpha: 0.5),
+      rgba($color: var.$color-primary, $alpha: 0.1)
+    );
+    height: 3.6rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    &:hover {
+        right: 1.6rem;
+    }
+  }
+
+  &__previous {
+    position: absolute;
+    left: 2rem;
+    @include mxn.flexRowCenter(1rem);
+    // background-color: rgba($color: var.$color-primary, $alpha: 0.4);
+    background-image: linear-gradient(
+      to right,
+      rgba($color: var.$color-primary, $alpha: 0.6),
+      rgba($color: var.$color-primary, $alpha: 0.1)
+    );
+    height: 3.6rem;
+    padding: 1rem;
+    padding-right: 2rem;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+
+    transition: all 0.3s ease-in;
+
+    &:hover {
+        left: 1.6rem;
+    }
+  }
+
+  &__icon {
+    color: var.$color-secondary;
+  }
+}
