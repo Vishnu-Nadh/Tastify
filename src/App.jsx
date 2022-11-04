@@ -10,7 +10,7 @@ import {
 } from "./components";
 
 function App() {
-  const [isRecipesLoading, setIsRecipesLoading] = useState(true);
+  const [isRecipesLoading, setIsRecipesLoading] = useState(false);
   const [hasRecipesFetchError, setHasRecipesFetchError] = useState(false);
   const [recipes, setRecipes] = useState([]);
 

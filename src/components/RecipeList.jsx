@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./RecipeList.module.scss";
 import RecipeItem from "./RecipeItem";
-import SkeltonRecipeItem from "./loaders/SkeltonRecipeItem";
+import SkeletonRecipeItem from "./loaders/SkeletonRecipeItem";
 
 const RecipeList = ({ isLoading, hasError, recipes }) => {
   console.log(isLoading);
@@ -9,7 +9,9 @@ const RecipeList = ({ isLoading, hasError, recipes }) => {
     <section className={styles.list}>
       <ul className={styles.list__items}>
         {isLoading &&
-          [...Array(10).keys()].map((item) => <SkeltonRecipeItem key={item} />)}
+          [...Array(10).keys()].map((item) => (
+            <SkeletonRecipeItem key={item} />
+          ))}
         {recipes.map((recipe) => (
           <RecipeItem key={recipe.id} recipe={recipe} />
         ))}
