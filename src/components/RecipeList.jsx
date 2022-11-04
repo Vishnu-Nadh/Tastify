@@ -6,8 +6,17 @@ import Pagination from "./Pagination";
 import Intro from "../utils/Intro";
 import Warning from "../utils/Warning";
 import Error from "../utils/Error";
+import { useContext } from "react";
+import RecipeContext from "../store/recipe-context";
 
-const RecipeList = ({ isLoading, hasError, recipes, notFetched }) => {
+const RecipeList = () => {
+  const {
+    isRecipesLoading: isLoading,
+    hasRecipesFetchError: hasError,
+    recipes,
+    notFetched,
+  } = useContext(RecipeContext);
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const itemsPerPage = 10;

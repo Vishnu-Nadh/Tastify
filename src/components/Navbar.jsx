@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.scss";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { useContext } from "react";
+import RecipeContext from "../store/recipe-context";
 
 const Navbar = ({ onFetchRecipes }) => {
   const [enteredSearch, setEnteredSearch] = useState("");
+  const { fetchRecipes } = useContext(RecipeContext);
 
   const debounce = (callback, delay) => {
     let timeout;
@@ -25,7 +28,7 @@ const Navbar = ({ onFetchRecipes }) => {
 
   useEffect(() => {
     if (enteredSearch === "") return;
-    onFetchRecipes(enteredSearch);
+    fetchRecipes(enteredSearch);
   }, [enteredSearch]);
 
   return (
