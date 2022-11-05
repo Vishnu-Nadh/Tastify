@@ -4,7 +4,7 @@ import styles from "./Spinner.module.scss";
 const Spinner = () => {
   return (
     <div className={styles.spinner}>
-      <div class={styles["lds-spinner"]}>
+      <div className={styles["lds-spinner"]}>
         <div />
         <div />
         <div />

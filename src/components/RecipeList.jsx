@@ -14,7 +14,7 @@ const RecipeList = () => {
     isRecipesLoading: isLoading,
     hasRecipesFetchError: hasError,
     recipes,
-    notFetched,
+    hasFetchedRecipes,
   } = useContext(RecipeContext);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,16 +41,22 @@ const RecipeList = () => {
     });
   };
 
+  console.log(hasFetchedRecipes);
+  const startingState = !isLoading && !hasFetchedRecipes && !hasError;
+  const noRecipeState =
+    !isLoading && hasFetchedRecipes && !hasError && recipes.length === 0;
+  const errorState = !isLoading && !hasFetchedRecipes && hasError;
+  const gotRecipes = !isLoading && hasFetchedRecipes && recipes.length !== 0;
+
   return (
     <section className={styles.list}>
       <ul className={styles.list__items}>
-        {notFetched && !isLoading && (
+        {startingState && (
           <Intro text="Start by searching for your favourate meal" />
         )}
-        {!isLoading && recipes.length === 0 && !notFetched && !hasError && (
-          <Warning text="No recipes found!" />
-        )}
-        {!isLoading && hasError && <Error />}
+        {noRecipeState && <Warning text="No recipes found!" />}
+        {errorState && <Error />}
+
         {isLoading &&
           [...Array(10).keys()].map((item) => (
             <SkeletonRecipeItem key={item} />
@@ -59,7 +65,7 @@ const RecipeList = () => {
           <RecipeItem key={recipe.id} recipe={recipe} />
         ))}
       </ul>
-      {!notFetched && recipes.length !== 0 && (
+      {gotRecipes && (
         <Pagination
           currentPage={currentPage}
           totalPages={numberOfpages}
@@ -67,7 +73,6 @@ const RecipeList = () => {
           onClickPrevious={onClickPrevious}
         />
       )}
-
       <div className={styles.list__footer}>
         <p>All rights reserved &#169; Vishnunadh</p>
       </div>

@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useHttp } from "../hooks/use-http";
+
+const baseUrl = "https://forkify-api.herokuapp.com/api/v2/recipes";
 
 const initialRecipeState = {
   fetchRecipes: () => {},
@@ -17,26 +20,17 @@ const initialRecipeState = {
 const RecipeContext = React.createContext(initialRecipeState);
 
 export const RecipeContextProvider = ({ children }) => {
-  const [isRecipesLoading, setIsRecipesLoading] = useState(false);
-  const [hasRecipesFetchError, setHasRecipesFetchError] = useState(false);
-  const [notFetched, setNoFetched] = useState(true);
-  const [recipes, setRecipes] = useState([]);
-  const [currentRecipe, setCurrentRecipe] = useState({});
-  const [hasRecipeFetchError, setHasRecipeFetchError] = useState(false);
-  const [isCurrentRecipeLoading, setIsCurrentRecipeLoading] = useState(false);
-  const [hasFetchedRecipe, setHasFetchedRecipe] = useState(false);
-
-  const fetchRecipe = async (id) => {
-    setHasRecipeFetchError(false);
-    setIsCurrentRecipeLoading(true);
-    try {
-      const response = await fetch(
-        `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      const resp = await response.json();
+  const {
+    fetchData: fetchRecipe,
+    data: currentRecipe,
+    isLoading: isCurrentRecipeLoading,
+    hasFetched: hasFetchedRecipe,
+    hasError: hasRecipeFetchError,
+  } = useHttp(
+    (id) => `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`,
+    { method: "GET" },
+    {},
+    (resp) => {
       const data = resp.data.recipe;
       const recipe = {
         id: data.id,
@@ -48,27 +42,22 @@ export const RecipeContextProvider = ({ children }) => {
         servings: data.servings,
         sourceUrl: data.sourceUrl,
       };
-      console.log(recipe);
-      setCurrentRecipe(recipe);
-      setIsCurrentRecipeLoading(false);
-      setHasFetchedRecipe(true);
-    } catch (error) {
-      setHasRecipeFetchError(true);
-      setIsCurrentRecipeLoading(false);
-      setHasFetchedRecipe(true);
+      return recipe;
     }
-  };
+  );
 
-  const fetchRecipes = async (query) => {
-    setHasRecipesFetchError(false);
-    setIsRecipesLoading(true);
-    try {
-      const response = await fetch(
-        `https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}`
-      );
-      if (!response.ok) throw new Error("Something went wrong !!");
-      const resp = await response.json();
-
+  const {
+    fetchData: fetchRecipes,
+    data: recipes,
+    isLoading: isRecipesLoading,
+    hasFetched: hasFetchedRecipes,
+    hasError: hasRecipesFetchError,
+  } = useHttp(
+    (query) =>
+      `https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}`,
+    { method: "GET" },
+    [],
+    (resp) => {
       const recipes = resp.data.recipes.map((recipe) => {
         return {
           id: recipe.id,
@@ -77,22 +66,16 @@ export const RecipeContextProvider = ({ children }) => {
           title: recipe.title,
         };
       });
-      setRecipes(recipes);
-      setIsRecipesLoading(false);
-      setNoFetched(false);
-    } catch (error) {
-      setHasRecipesFetchError(true);
-      setIsRecipesLoading(false);
-      setNoFetched(false);
+      return recipes;
     }
-  };
+  );
 
   const RecipeState = {
     fetchRecipes,
+    recipes,
     isRecipesLoading,
     hasRecipesFetchError,
-    notFetched,
-    recipes,
+    hasFetchedRecipes,
     fetchRecipe,
     currentRecipe,
     hasRecipeFetchError,

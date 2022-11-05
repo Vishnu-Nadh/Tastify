@@ -1,50 +1,41 @@
-import { useReducer, useEffect } from "react";
+import { useState } from "react";
 
-const initialHttpState = {
-  isLoading: false,
-  hasError: false,
-};
+export const useHttp = (
+  // param,
+  urlGeneratorFn,
+  options,
+  initialValue,
+  dataTransformFn = (data) => data
+) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [hasFetched, setHasFetched] = useState(false);
+  const [data, setData] = useState(initialValue);
 
-const baseUrl = "https://forkify-api.herokuapp.com/api/v2/recipes";
-
-const httpReducer = (state, action) => {
-  if (action.type === "LOAD") {
-    return {
-      isLoading: true,
-      hasError: state.hasError,
-    };
-  }
-  return initialHttpState;
-};
-
-export const useHttp = ({ fetchAction, param }) => {
-  const [httpState, httpDispatch] = useReducer(httpReducer, initialHttpState);
-
-  useEffect(() => {}, []);
-
-  const onFectchData = async ({ fetchAction, param }) => {
-    // SEARCH FOR RECIPE WITH DEBOUNCING
-    if (fetchAction === "get-recipes") {
-      const url = baseUrl + "?search=" + param;
-      const options = { method: "GET" };
-    }
-    // GET AN SINGLE RECIPE USING ID
-    if (fetchAction === "get-recipe") {
-      //
-    }
-    // POST A NEW RECIPE
-    if (fetchAction === "add-recipe") {
-      //
-    }
-    // DELETE NEW RECIPE
-    if (fetchAction === "delete-recipe") {
-      //
-    }
-
+  const fetchData = async (param) => {
+    setHasError(false);
+    setIsLoading(true);
     try {
-      httpDispatch({ type: "LOAD" });
-      const response = await fetch(url, options)
-      console.log(response)
-    } catch (error) {}
+      const response = await fetch(urlGeneratorFn(param), options);
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const resp = await response.json();
+      const data = dataTransformFn(resp);
+      setData(data);
+      setIsLoading(false);
+      setHasFetched(true);
+    } catch (error) {
+      setHasError(true);
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    fetchData,
+    data,
+    isLoading,
+    hasFetched,
+    hasError,
   };
 };
