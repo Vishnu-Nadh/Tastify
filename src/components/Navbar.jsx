@@ -3,6 +3,7 @@ import styles from "./Navbar.module.scss";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useContext } from "react";
 import RecipeContext from "../store/recipe-context";
+import RecipeBookmarks from "./RecipeBookmarks";
 
 const Navbar = ({ onFetchRecipes }) => {
   const [enteredSearch, setEnteredSearch] = useState("");
@@ -47,6 +48,7 @@ const Navbar = ({ onFetchRecipes }) => {
           <FaRegBookmark />
         </span>
       </div>
+      <RecipeBookmarks className={styles.nav__bookmark_list}/>
     </nav>
   );
 };

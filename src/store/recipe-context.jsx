@@ -76,14 +76,18 @@ export const RecipeContextProvider = ({ children }) => {
 
   const onIncreseServings = () => {
     let savedRecipe = JSON.parse(localStorage.getItem("currentRecipe"));
-    console.log(savedRecipe);
     let ratio = (currentRecipe.servings + 1) / savedRecipe.servings;
     let updatedRecipe = {
       ...currentRecipe,
       servings: currentRecipe.servings + 1,
       ingredients: savedRecipe.ingredients.map((ing) => ({
         ...ing,
-        quantity: ing.quantity !== null ? ing.quantity * ratio : null,
+        quantity:
+          ing.quantity !== null
+            ? (ing.quantity * ratio) % 1 != 0
+              ? (ing.quantity * ratio).toFixed(2)
+              : ing.quantity * ratio
+            : null,
       })),
     };
     setCurrentRecipe(updatedRecipe);
@@ -98,7 +102,12 @@ export const RecipeContextProvider = ({ children }) => {
       servings: currentRecipe.servings - 1,
       ingredients: savedRecipe.ingredients.map((ing) => ({
         ...ing,
-        quantity: ing.quantity !== null ? ing.quantity * ratio : null,
+        quantity:
+          ing.quantity !== null
+            ? (ing.quantity * ratio) % 1 != 0
+              ? (ing.quantity * ratio).toFixed(2)
+              : ing.quantity * ratio
+            : null,
       })),
     };
     setCurrentRecipe(updatedRecipe);

@@ -1,3 +1,5 @@
+@use "../../sass/mixins" as mxn;
+
 .recipe {
   width: 100%;
   padding: 1rem;
@@ -31,6 +33,84 @@
       border-radius: 2px;
     }
   }
+}
+
+.header {
+  width: 50%;
+  height: 2.6rem;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+.textline {
+  width: 20rem;
+  height: 1.4rem;
+  border-radius: 2px;
+}
+
+.ing {
+  grid-area: recipe-details;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // &__header {
+  //   margin
+  // }
+
+  &__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    padding: 2rem 5rem 4rem 5rem;
+    gap: 2rem;
+  }
+
+  &__item {
+    //
+  }
+}
+
+.source {
+  margin-top: auto;
+  background-color: #eee;
+  @include mxn.flexColCenter(1rem);
+  text-align: center;
+
+  & a {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.actions {
+  grid-area: recipe-actions;
+  @include mxn.flexRowCenter(3rem);
+  margin-top: 3rem;
+  padding: 0 5rem;
+
+  &__bookmark {
+    margin-left: auto;
+  }
+}
+
+.circle {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+}
+
+.tag {
+  width: 10rem;
+  height: 3rem;
+  border-radius: 50px;
+}
+
+.button {
+  height: 3rem;
+  width: 8rem;
+  border-radius: 50px;
+  border: none;
 }
 
 .skeleton {

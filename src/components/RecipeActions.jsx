@@ -6,6 +6,8 @@ import { BiGroup } from "react-icons/bi";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { useContext } from "react";
 import RecipeContext from "../store/recipe-context";
+import BookmarksContext from "../store/bookmarks-context";
+import SkeletonRecipeActions from "./loaders/SkeletonRecipeActions";
 
 const RecipeActions = () => {
   const {
@@ -13,8 +15,16 @@ const RecipeActions = () => {
     hasFetchedRecipe,
     onIncreseServings,
     onDecreaseServings,
+    isCurrentRecipeLoading,
   } = useContext(RecipeContext);
 
+  // const hasBookmarked =
+  const { bookmarkedRecipes, toggleBookmark } = useContext(BookmarksContext);
+  const hasBookmarked = bookmarkedRecipes.find(
+    (item) => item.id === currentRecipe.id
+  );
+
+  if (isCurrentRecipeLoading) return <SkeletonRecipeActions />;
   if (!hasFetchedRecipe) return;
 
   return (
@@ -39,10 +49,16 @@ const RecipeActions = () => {
           <FiPlusCircle className={styles.actions__btn_icon} />
         </button>
       </div>
-      <div className={styles.actions__bookmark}>
-        {/* <FaBookmark/> */}
-        <FaRegBookmark />
-      </div>
+      <button
+        type="button"
+        className={styles.actions__bookmark}
+        onClick={() => {
+          toggleBookmark(currentRecipe);
+        }}
+      >
+        {hasBookmarked && <FaBookmark />}
+        {!hasBookmarked && <FaRegBookmark />}
+      </button>
     </section>
   );
 };

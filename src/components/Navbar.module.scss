@@ -5,15 +5,12 @@
 .nav {
   background-color: var.$color-bg;
   grid-area: navbar;
+  position: relative;
 
   display: flex;
   gap: 4rem;
   align-items: center;
   padding: 1rem 3rem;
-
-  &__bookmark {
-    margin-left: auto;
-  }
 
   &__logo {
     font-size: 2.4rem;
@@ -27,24 +24,31 @@
   }
 
   &__bookmark {
+    position: absolute;
+    height: 100%;
+    right: 3rem;
+    margin-left: auto;
     @include mxn.flexRowCenter(1rem);
     font-size: 1.4rem;
     font-weight: 700;
     color: var.$color-primary;
     cursor: pointer;
     padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.839);
     transition: all 0.3s eas-in;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.657);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:hover + section,
+    &:hover + section:hover {
+      display: flex;
     }
   }
 
   &__search {
     font-size: 1.6rem;
-    padding: .8rem 1.6rem;
+    padding: 0.8rem 1.6rem;
     border-radius: 50px;
     border: 2px solid var.$color-primary-light;
     color: var.$color-primary-dark;
@@ -53,11 +57,10 @@
     letter-spacing: 1px;
 
     &::placeholder {
-        color: #bbb;
-        font-weight: 500;
+      color: #bbb;
+      font-weight: 500;
     }
   }
-
 
   &__bookmark_icon {
     color: var.$color-primary;

@@ -3,11 +3,15 @@ import styles from "./RecipeDetails.module.scss";
 import RecipeContext from "../store/recipe-context";
 import { useContext } from "react";
 import { CgBowl } from "react-icons/cg";
+import SkeletonRecipeDetails from "./loaders/SkeletonRecipeDetails";
 
 const RecipeDetails = () => {
-  const { currentRecipe, hasFetchedRecipe } = useContext(RecipeContext);
+  const { currentRecipe, hasFetchedRecipe, isCurrentRecipeLoading } =
+    useContext(RecipeContext);
+  if (isCurrentRecipeLoading) return <SkeletonRecipeDetails />;
   if (!hasFetchedRecipe) return;
   const ingredients = hasFetchedRecipe ? currentRecipe.ingredients : [];
+
   return (
     <article className={styles.ing}>
       <h2 className={styles.ing__header}>Recipe Ingredients</h2>
