@@ -4,9 +4,13 @@ import { useContext } from "react";
 import RecipeContext from "../store/recipe-context";
 
 const RecipeItem = ({ recipe: { id, title, imageUrl, publisher } }) => {
-  const { fetchRecipe } = useContext(RecipeContext);
+  const { fetchRecipe, currentRecipe } = useContext(RecipeContext);
+  const recipeClasses =
+    currentRecipe.id === id
+      ? `${styles.recipe} ${styles.active}`
+      : `${styles.recipe}`;
   return (
-    <li className={styles.recipe} onClick={() => fetchRecipe(id)}>
+    <li className={recipeClasses} onClick={() => fetchRecipe(id)}>
       <div className={styles.recipe__image}>
         <img src={imageUrl} alt="recipe" />
       </div>

@@ -10,12 +10,12 @@
   background-color: rgba($color: var.$color-secondary, $alpha: 0.1);
 
   &__current {
-    width: 3.6rem;
-    height: 3.6rem;
+    width: 3.4rem;
+    height: 3.4rem;
     border-radius: 50%;
     text-align: center;
     @include mxn.flexRowCenter();
-    background-color: rgba($color: var.$color-primary, $alpha: 0.4);
+    background-color: rgba($color: var.$color-primary, $alpha: 0.25);
   }
 
   &__next {
@@ -25,10 +25,10 @@
     // background-color: rgba($color: var.$color-primary, $alpha: 0.4);
     background-image: linear-gradient(
       to left,
-      rgba($color: var.$color-primary, $alpha: 0.5),
+      rgba($color: var.$color-primary, $alpha: 0.25),
       rgba($color: var.$color-primary, $alpha: 0.1)
     );
-    height: 3.6rem;
+    height: 3.4rem;
     padding: 1rem;
     padding-left: 2rem;
     border-bottom-right-radius: 50px;
@@ -49,10 +49,10 @@
     // background-color: rgba($color: var.$color-primary, $alpha: 0.4);
     background-image: linear-gradient(
       to right,
-      rgba($color: var.$color-primary, $alpha: 0.6),
+      rgba($color: var.$color-primary, $alpha: 0.25),
       rgba($color: var.$color-primary, $alpha: 0.1)
     );
-    height: 3.6rem;
+    height: 3.4rem;
     padding: 1rem;
     padding-right: 2rem;
     border-bottom-left-radius: 50px;

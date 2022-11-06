@@ -7,8 +7,14 @@ $color-primary-dark: #d85573;
 $color-secondary: #d36742;
 $color-text: #333;
 
-$color-bg: antiquewhite;
-$color-primary-bg: #feeff2;
+$color-bg: rgba(
+  $color: $color-secondary,
+  $alpha: 0.05,
+);
+$color-primary-bg: rgba(
+  $color: $color-primary,
+  $alpha: 0.05,
+);
 
 $color-bg-gradient: linear-gradient(90deg, #f598a8, #f6edb2);
 $color-text-gradient: linear-gradient(90deg, #f05e80, #d36742);

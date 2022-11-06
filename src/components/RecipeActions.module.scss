@@ -1,3 +1,73 @@
+@use "../sass/mixins" as mxn;
+@use "../sass/variables" as var;
+
 .actions {
-    grid-area: recipe-actions;
+  grid-area: recipe-actions;
+  @include mxn.flexRowCenter(3rem);
+  margin-top: 3rem;
+  padding: 3rem 5rem 5rem 5rem;
+  font-size: 1.4rem;
+  font-size: 600;
+
+  & div {
+    @include mxn.flexRowCenter(1rem);
+    & p span {
+      color: var.$color-primary;
+      font-size: 700;
+    }
+  }
+
+  &__time {
+    &_icon {
+      color: var.$color-primary;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  &__servings {
+    &_icon {
+      color: var.$color-primary;
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+
+  &__action_btns {
+    & button {
+      color: var.$color-primary;
+      border-radius: 50px;
+      @include mxn.flexRowCenter();
+    }
+  }
+
+  &__btn_icon {
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__bookmark {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    margin-left: auto;
+    @include mxn.flexRowCenter(1rem);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var.$color-primary;
+    cursor: pointer;
+    // padding: 1rem;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.839);
+    transition: all 0.3s eas-in;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.657);
+    }
+  }
 }

@@ -1,3 +1,87 @@
+@use "../sass/variables" as var;
+@use "../sass/mixins" as mxn;
+
 .ing {
   grid-area: recipe-details;
+  font-size: 1.3rem;
+  background-color: rgba($color: var.$color-secondary, $alpha: 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__header {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var.$color-secondary;
+    text-align: center;
+    padding: 1.6rem;
+  }
+
+  &__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    padding: 2rem 5rem 4rem 5rem;
+    gap: 2rem;
+  }
+
+  &__item {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+
+    &__icon {
+      margin-right: 5px;
+      color: var.$color-secondary;
+      width: 2rem;
+    }
+  }
+
+  &__quantity {
+    color: var.$color-secondary;
+    font-weight: 800;
+  }
+
+  &__unit {
+    font-style: italic;
+    font-size: 1.2rem;
+  }
+}
+
+.source {
+  margin-top: auto;
+  padding: 1rem 3rem 3rem 3rem;
+  background-color: #eee;
+  @include mxn.flexColCenter(0px);
+  // padding-bottom: 4rem;
+  text-align: center;
+
+  &__btn,
+  &__btn:link,
+  &__btn:visited {
+    margin-top: 2rem;
+    background-image: var.$color-text-gradient;
+    color: #eee;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: var.$shadow-md;
+    border-radius: 50px;
+    padding: 1rem 1.4rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease-in;
+  }
+
+  &__btn:hover,
+  &__btn:active {
+    transform: scale(1.04);
+    box-shadow: var.$shadow-lg;
+  }
+
+  &__publisher {
+    color: var.$color-secondary;
+    font-weight: 700;
+  }
 }

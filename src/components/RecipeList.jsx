@@ -15,6 +15,7 @@ const RecipeList = () => {
     hasRecipesFetchError: hasError,
     recipes,
     hasFetchedRecipes,
+    currentRecipe,
   } = useContext(RecipeContext);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +42,6 @@ const RecipeList = () => {
     });
   };
 
-  console.log(hasFetchedRecipes);
   const startingState = !isLoading && !hasFetchedRecipes && !hasError;
   const noRecipeState =
     !isLoading && hasFetchedRecipes && !hasError && recipes.length === 0;
@@ -62,7 +62,10 @@ const RecipeList = () => {
             <SkeletonRecipeItem key={item} />
           ))}
         {currentItems.map((recipe) => (
-          <RecipeItem key={recipe.id} recipe={recipe} />
+          <RecipeItem
+            key={recipe.id}
+            recipe={recipe}
+          />
         ))}
       </ul>
       {gotRecipes && (

@@ -10,7 +10,7 @@
 
   display: grid;
   grid-template-columns: 1fr 2.25fr;
-  grid-template-rows: 7rem 32rem 8rem minmax(42rem, auto);
+  grid-template-rows: 7rem 32rem 10rem minmax(42rem, auto);
   grid-template-areas:
     "navbar navbar"
     "recipelist recipe-view"

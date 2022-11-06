@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export const useHttp = (
-  // param,
   urlGeneratorFn,
   options,
   initialValue,
@@ -37,5 +36,6 @@ export const useHttp = (
     isLoading,
     hasFetched,
     hasError,
+    setData,
   };
 };
