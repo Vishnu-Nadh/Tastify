@@ -1,5 +1,6 @@
 @use "../../sass/variables" as var;
 @use "../../sass/mixins" as mxn;
+
 .spinner {
   z-index: 5;
   backdrop-filter: blur(3px);
@@ -9,6 +10,7 @@
   top: 0;
   left: 0;
   @include mxn.flexRowCenter();
+  margin: 0 auto;
 }
 
 .lds-spinner {

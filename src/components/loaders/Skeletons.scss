@@ -36,10 +36,14 @@
 }
 
 .header {
-  width: 50%;
+  // width: 50%;
   height: 2.6rem;
   border-radius: 2px;
   margin: 0 auto;
+
+  @include mxn.respond(xs) {
+    width: 20rem;
+  }
 }
 
 .textline {
@@ -104,6 +108,11 @@
   width: 10rem;
   height: 3rem;
   border-radius: 50px;
+
+  @include mxn.respond(xs) {
+    width: 6rem;
+    height: 2rem;
+  }
 }
 
 .button {

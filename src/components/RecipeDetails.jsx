@@ -8,6 +8,7 @@ import SkeletonRecipeDetails from "./loaders/SkeletonRecipeDetails";
 const RecipeDetails = () => {
   const { currentRecipe, hasFetchedRecipe, isCurrentRecipeLoading } =
     useContext(RecipeContext);
+
   if (isCurrentRecipeLoading) return <SkeletonRecipeDetails />;
   if (!hasFetchedRecipe) return;
   const ingredients = hasFetchedRecipe ? currentRecipe.ingredients : [];

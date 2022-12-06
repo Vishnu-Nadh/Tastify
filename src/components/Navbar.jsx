@@ -21,7 +21,7 @@ const Navbar = ({ onFetchRecipes }) => {
 
   const setSearchQuery = debounce((value) => {
     setEnteredSearch(value);
-  }, 1000);
+  }, 800);
 
   const onSearchQueryHandler = (event) => {
     setSearchQuery(event.target.value.trim());
@@ -48,7 +48,7 @@ const Navbar = ({ onFetchRecipes }) => {
           <FaRegBookmark />
         </span>
       </div>
-      <RecipeBookmarks className={styles.nav__bookmark_list}/>
+      <RecipeBookmarks className={styles.nav__bookmark_list} />
     </nav>
   );
 };

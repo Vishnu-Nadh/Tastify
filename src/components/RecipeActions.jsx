@@ -23,7 +23,6 @@ const RecipeActions = () => {
   const hasBookmarked = bookmarkedRecipes.find(
     (item) => item.id === currentRecipe.id
   );
-
   if (isCurrentRecipeLoading) return <SkeletonRecipeActions />;
   if (!hasFetchedRecipe) return;
 

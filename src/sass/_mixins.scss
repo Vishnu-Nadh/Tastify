@@ -26,8 +26,8 @@
   }
 
   @if $device == ss {
-    @media (max-width: 38.75em) {
-      // when width is < 620px
+    @media (max-width: 40em) {
+      // when width is < 640px
       @content;
     }
   }

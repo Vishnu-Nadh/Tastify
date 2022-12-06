@@ -12,6 +12,10 @@
   align-items: center;
   padding: 1rem 3rem;
 
+  @include mxn.respond(ss) {
+    align-items: flex-start;
+  }
+
   &__logo {
     font-size: 2.4rem;
     font-family: "Pacifico", cursive;
@@ -44,6 +48,10 @@
     &:hover + section:hover {
       display: flex;
     }
+
+    @include mxn.respond(ss) {
+      height: 5rem;
+    }
   }
 
   &__search {
@@ -60,10 +68,17 @@
       color: #bbb;
       font-weight: 500;
     }
+
+    @include mxn.respond(ss) {
+      position: absolute;
+      top: 8rem;
+    }
   }
 
   &__bookmark_icon {
     color: var.$color-primary;
     font-size: 2rem;
   }
+
+
 }

@@ -8,6 +8,7 @@ import Warning from "../utils/Warning";
 import Error from "../utils/Error";
 import { useContext } from "react";
 import RecipeContext from "../store/recipe-context";
+import { useEffect } from "react";
 
 const RecipeList = () => {
   const {
@@ -18,7 +19,15 @@ const RecipeList = () => {
     currentRecipe,
   } = useContext(RecipeContext);
 
+  const [showList, setShowList] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    if (recipes.length > 0 || isLoading) {
+      setShowList(true);
+    } else {
+      setShowList(false);
+    }
+  }, [recipes, isLoading]);
 
   const itemsPerPage = 10;
   const numberOfpages =
@@ -42,6 +51,10 @@ const RecipeList = () => {
     });
   };
 
+  const toggleList = () => {
+    setShowList(false);
+  };
+
   const startingState = !isLoading && !hasFetchedRecipes && !hasError;
   const noRecipeState =
     !isLoading && hasFetchedRecipes && !hasError && recipes.length === 0;
@@ -49,7 +62,7 @@ const RecipeList = () => {
   const gotRecipes = !isLoading && hasFetchedRecipes && recipes.length !== 0;
 
   return (
-    <section className={styles.list}>
+    <section className={[styles.list, showList ? "" : styles.hidden].join(" ")}>
       <ul className={styles.list__items}>
         {startingState && (
           <Intro text="Start by searching for your favourate meal" />
@@ -62,10 +75,7 @@ const RecipeList = () => {
             <SkeletonRecipeItem key={item} />
           ))}
         {currentItems.map((recipe) => (
-          <RecipeItem
-            key={recipe.id}
-            recipe={recipe}
-          />
+          <RecipeItem onShow={toggleList} key={recipe.id} recipe={recipe} />
         ))}
       </ul>
       {gotRecipes && (

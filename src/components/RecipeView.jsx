@@ -7,7 +7,7 @@ import Spinner from "./loaders/Spinner";
 const RecipeView = () => {
   const { currentRecipe, isCurrentRecipeLoading, hasFetchedRecipe } =
     useContext(RecipeContext);
-  
+
   return (
     <figure className={styles.view}>
       {isCurrentRecipeLoading && <Spinner />}
