@@ -9,7 +9,7 @@ This single page application is a recipe finder app using the forkify api with b
 
 ## Deployed Link to website
 
-[TASTIFY](https://tastify-recipefinder.netlify.app/)
+[TASTIFY](https://tastify-recipefinderapp.netlify.app/)
 
 ## Reflections
 
